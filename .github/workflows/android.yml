@@ -32,7 +32,12 @@ jobs:
 
       # AGENTS.md 第 0 节：./gradlew check 是唯一闸门
       # check 不联网，站点地址用占位符即可；要在这里出正式包时再配 STARVEIL_API_HOST
-      - name: check
-        run: ./gradlew check --max-workers=1 --no-daemon
-        env:
-          STARVEIL_API_HOST: ${{ secrets.STARVEIL_API_HOST }}
+- name: check
+  run: ./gradlew check --max-workers=1 --no-daemon
+  env:
+    STARVEIL_API_HOST: ${{ secrets.STARVEIL_API_HOST }}
+
+- name: Build debug APK
+  run: ./gradlew :app:assembleDebug --max-workers=1 --no-daemon
+  env:
+    STARVEIL_API_HOST: ${{ secrets.STARVEIL_API_HOST }}

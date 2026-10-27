@@ -43,3 +43,9 @@ jobs:
         run: ./gradlew :app:assembleDebug --max-workers=1 --no-daemon
         env:
           STARVEIL_API_HOST: ${{ secrets.STARVEIL_API_HOST }}
+
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Starveil-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
